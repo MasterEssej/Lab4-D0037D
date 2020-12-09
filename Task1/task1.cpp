@@ -41,61 +41,51 @@ void MotorVehicle::print()
 	cout << "Tires:" << endl;
 	cout << "----------------------------------------" << endl;;
 	cout << "Number of tires: " << numberOfTires << endl;
-	cout << "Tire diameters: ";
-	for (int i = 0; i < numberOfTires; i++)
-	{
-		cout << tireDiameters << " ";
-	}
-	cout << endl;
-	//cout << "Tire diameter: " << tireDiameters << endl;
+	cout << "Tire diameter: " << tireDiameters << endl;
 	cout << "----------------------------------------\n" << endl;
 }
 
 int main()
 {
-	string name;
-	string adress;
-	bool drive = true;
-	string color;
-	float width, height, volume;
-	int cylinders, tires;
-	float* diameter = new float;
-	
+	int vehicles;
+	cout << "How many vehicles?: ";
+	cin >> vehicles;
 
-	//int vehicles;
-	//cout << "How many vehicles?: ";
-	//cin >> vehicles;
+	MotorVehicle array1[5];
 
-	//for (int i = 0; i < vehicles; i++)
-	//{
-		//cout << "Vehicle " << i + 1 << ": " << endl;
+	for (int i = 0; i < vehicles; i++)
+	{
+		cout << "Vehicle " << i + 1 << ": " << endl;
 		cout << "----------------------------------------" << endl;
-		cout << "Name of owner: "; getline(cin, name);
+		cin.ignore(1, '\n');
+		cout << "Name of owner: "; getline(cin, array1[i].owner.name);
 
-		cout << "Adress of owner: "; getline(cin, adress);
+		cout << "Adress of owner: "; getline(cin, array1[i].owner.adress);
 
-		cout << "Driver's license? (1 for yes, 0 for no): "; cin >> drive;
+		cout << "Driver's license? (1 for yes, 0 for no): "; cin >> array1[i].owner.allowedToDrive;
 
-		cout << "Color of car: "; cin >> color;
+		cout << "Color of car: "; cin >> array1[i].body.color;
 
-		cout << "Width of car: "; cin >> width;
+		cout << "Width of car: "; cin >> array1[i].body.width;
 
-		cout << "Height of car: "; cin >> height;
+		cout << "Height of car: "; cin >> array1[i].body.height;
 
-		cout << "Volume of engine(in litres): "; cin >> volume;
+		cout << "Volume of engine(in litres): "; cin >> array1[i].engine.sizeInLitres;
 
-		cout << "Number of cylinders: "; cin >> cylinders;
+		cout << "Number of cylinders: "; cin >> array1[i].engine.numberOfCylinders;
 
-		cout << "Number of tires: "; cin >> tires;
+		cout << "Number of tires: "; cin >> array1[i].numberOfTires;
 
-		cout << "Diameter of tires: "; cin >> *diameter;
+		cout << "Diameter of tires: "; cin >> *array1[i].tireDiameters;
 
 		system("cls");
 
-	//}
-	
-	MotorVehicle car1(name, adress, drive, color, width, height, volume, cylinders, tires, diameter);
-	car1.print();
+	}
+	for (int i = 0; i < vehicles; i++)
+	{
+		cout << "\nVehicle " << i + 1 << ":\n" << endl;
+		array1[i].print();
+	}
 
 	return 0;
 }

@@ -71,29 +71,30 @@ public:
 	Owner owner;
 	float* tireDiameters;
 	int numberOfTires;
-	MotorVehicle(string name, string adress, bool allowDrive, string color, float width, float height, float volume, int cylinders, int tires, float* tireDm)
+	float* dia = new float;
+	MotorVehicle()
 	{
 		//Owner
-		owner.name = name;
-		owner.adress = adress;
-		owner.allowedToDrive = allowDrive;
+		owner.name = "Raul";
+		owner.adress = "Gatan";
+		owner.allowedToDrive = true;
 
 		//Body
-		body.color = color;
-		body.width = width;
-		body.height = height;
+		body.color = "black";
+		body.width = 2;
+		body.height = 2;
 
 		//Engine
-		engine.sizeInLitres = volume;
-		engine.numberOfCylinders = cylinders;
+		engine.sizeInLitres = 10;
+		engine.numberOfCylinders = 4;
 
 		//Tires
-		numberOfTires = tires;
-		for (int i = 0; i < numberOfTires; i++)
-		{
-			tireDiameters = tireDm;
-		}
-		//tireDiameters = tireDm;
+		numberOfTires = 4;
+		tireDiameters = dia;
+	}
+	~MotorVehicle()
+	{
+		delete tireDiameters;
 	}
 	void print();
 };
