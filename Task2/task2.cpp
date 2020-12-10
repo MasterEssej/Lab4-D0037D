@@ -1,5 +1,4 @@
 #include <iostream>
-#include <vector>
 #include <math.h>
 #include <string>
 #include "task2.h"

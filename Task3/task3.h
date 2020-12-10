@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
-#include <math.h>
 #include <string>
+#include <math.h>
 using namespace std;
 
 class Point2D
@@ -13,7 +13,7 @@ public:
 		x = 0;
 		y = 0;
 	}
-	Point2D(const float &valuex, const float &valuey)
+	Point2D(const float& valuex, const float& valuey)
 	{
 		x = valuex;
 		y = valuey;
@@ -24,4 +24,9 @@ public:
 	Point2D operator+(const Point2D& p);
 	Point2D& operator=(const Point2D& p);
 	bool operator==(const Point2D& p);
+};
+
+class Polyline
+{
+
 };
