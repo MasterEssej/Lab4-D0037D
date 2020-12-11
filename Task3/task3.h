@@ -28,5 +28,22 @@ public:
 
 class Polyline
 {
-
+public:
+	Point2D* parr;
+	int size;
+	int index;
+	int points;
+	Polyline(int size)
+	{
+		index = 0;
+		points = 0;
+		parr = new Point2D[size];
+		this->size = size;
+	}
+	~Polyline()
+	{
+		delete[] parr;
+	}
+	void add(float newx, float newy);
+	void remove();
 };

@@ -40,3 +40,53 @@ bool Point2D::operator==(const Point2D& p)
 }
 #pragma endregion
 
+void Polyline::add(float newx, float newy)
+{
+	if (index >= size)
+	{
+		cout << "The Polyline is already full" << endl;
+	}
+	else
+	{
+		Point2D newp(newx, newy);
+		parr[index] = newp;
+		cout << "Added point: ( " << parr[index].x << " , " << parr[index].y << " )" << endl;
+		index++;
+		points++;
+	}
+}
+
+void Polyline::remove()
+{
+	index--;
+	//parr[index] = nullptr;
+}
+
+int main()
+{
+	int arrsize;
+
+	cout << "Size of array: "; cin >> arrsize;
+	cout << endl;
+	Polyline line(arrsize);
+	float x, y;
+
+	int nump;
+	cout << "How many points?: "; cin >> nump;
+	cout << endl;
+	for (int i = 0; i < nump; i++)
+	{
+		cout << "Give x" << i + 1 << ": "; cin >> x;
+		cout << "Give y" << i + 1 << ": "; cin >> y;
+		line.add(x, y);
+		cout << endl;
+	}
+
+	cout << "\nAll points:" << endl;
+	for (int k = 0; k < line.points; k++)
+	{
+		cout << "Point " << k + 1 << ": " << "( " << line.parr[k].x << " , " << line.parr[k].y << " )" << endl;
+	}
+
+	return 0;
+}

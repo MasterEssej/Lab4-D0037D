@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include "task1.h"
+#include "task1.h""
 using namespace std;
 
 void Engine::print()
@@ -41,7 +41,10 @@ void MotorVehicle::print()
 	cout << "Tires:" << endl;
 	cout << "----------------------------------------" << endl;;
 	cout << "Number of tires: " << numberOfTires << endl;
-	cout << "Tire diameter: " << tireDiameters << endl;
+	for (int i = 0; i < numberOfTires; i++)
+	{
+		cout << "Tire diameter: " << tireDiameters[i] << endl;
+	}
 	cout << "----------------------------------------\n" << endl;
 }
 
@@ -74,9 +77,13 @@ int main()
 
 		cout << "Number of cylinders: "; cin >> array1[i].engine.numberOfCylinders;
 
-		cout << "Number of tires: "; cin >> array1[i].numberOfTires;
+		cout << "Number of tires(max 10): "; cin >> array1[i].numberOfTires;
 
-		cout << "Diameter of tires: "; cin >> *array1[i].tireDiameters;
+		for (int k = 0; k < array1[i].numberOfTires; k++)
+		{
+			cout << "Diameter of tires: "; cin >> array1[i].tireDiameters[k];
+		}
+		
 
 		system("cls");
 

@@ -71,7 +71,6 @@ public:
 	Owner owner;
 	float* tireDiameters;
 	int numberOfTires;
-	float* dia = new float;
 	MotorVehicle()
 	{
 		//Owner
@@ -90,11 +89,11 @@ public:
 
 		//Tires
 		numberOfTires = 4;
-		tireDiameters = dia;
+		tireDiameters = new float[10];
 	}
 	~MotorVehicle()
 	{
-		delete tireDiameters;
+		delete[] tireDiameters;
 	}
 	void print();
 };
