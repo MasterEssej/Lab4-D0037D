@@ -52,14 +52,60 @@ void Polyline::add(float newx, float newy)
 		parr[index] = newp;
 		cout << "Added point: ( " << parr[index].x << " , " << parr[index].y << " )" << endl;
 		index++;
-		points++;
 	}
 }
 
 void Polyline::remove()
 {
 	index--;
+	delete &parr[index];
 	//parr[index] = nullptr;
+}
+
+bool Polyline::check(float x, float y)
+{
+	for (int i = 0; i < index; i++)
+	{
+		if (parr[i].x == x)
+		{
+			if (parr[i].y == y)
+			{
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
+int Polyline::pointnum()
+{
+	return index;
+}
+
+float Polyline::length()
+{
+	float sum = 0;
+	for (int i = 0; i < index-1; i++)
+	{
+		sum += parr[i].distCalc(parr[i + 1].x, parr[i + 1].y);
+	}
+	return sum;
+}
+
+void Polyline::print()
+{
+	for (int i = 0; i < index; i++)
+	{
+		cout << parr[i].toString() << endl;
+	}
+}
+
+void error()
+{
+	cout << "Input is not valid" << endl;
+	cin.clear();
+	cin.ignore(1, '\n');
+	cout << "------------------------------------------" << endl;
 }
 
 int main()
@@ -67,26 +113,66 @@ int main()
 	int arrsize;
 
 	cout << "Size of array: "; cin >> arrsize;
+	if (cin.fail())
+	{
+		error();
+		main();
+	}
 	cout << endl;
 	Polyline line(arrsize);
 	float x, y;
 
 	int nump;
 	cout << "How many points?: "; cin >> nump;
+	if (cin.fail())
+	{
+		error();
+		main();
+	}
 	cout << endl;
 	for (int i = 0; i < nump; i++)
 	{
 		cout << "Give x" << i + 1 << ": "; cin >> x;
+		if (cin.fail())
+		{
+			error();
+			main();
+		}
 		cout << "Give y" << i + 1 << ": "; cin >> y;
+		if (cin.fail())
+		{
+			error();
+			main();
+		}
 		line.add(x, y);
 		cout << endl;
 	}
 
-	cout << "\nAll points:" << endl;
-	for (int k = 0; k < line.points; k++)
+	cout << "All points:" << endl;
+	line.print();
+	cout << endl;
+
+	cout << "Number of points: " << line.pointnum() << "\n" << endl;
+
+	cout << "Length of polyline: ";
+	cout << line.length() << "\n" << endl;
+
+	float checkx, checky;
+	cout << "Check if point exists:" << endl;
+	cout << "Point x: "; cin >> checkx;
+	if (cin.fail())
 	{
-		cout << "Point " << k + 1 << ": " << "( " << line.parr[k].x << " , " << line.parr[k].y << " )" << endl;
+		error();
+		main();
 	}
+	cout << "Point y: "; cin >> checky;
+	if (cin.fail())
+	{
+		error();
+		main();
+	}
+
+	cout << "\n" << "Point exists: " << boolalpha << line.check(checkx, checky) << endl;
 
 	return 0;
 }

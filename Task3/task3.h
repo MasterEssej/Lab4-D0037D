@@ -32,11 +32,9 @@ public:
 	Point2D* parr;
 	int size;
 	int index;
-	int points;
 	Polyline(int size)
 	{
 		index = 0;
-		points = 0;
 		parr = new Point2D[size];
 		this->size = size;
 	}
@@ -46,4 +44,8 @@ public:
 	}
 	void add(float newx, float newy);
 	void remove();
+	bool check(float x, float y);
+	int pointnum();
+	float length();
+	void print();
 };
