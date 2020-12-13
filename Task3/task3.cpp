@@ -107,11 +107,6 @@ void Polyline::print()
 		cout << parr[i].toString() << endl;
 	}
 }
-
-void Polyline::operator delete(void* p)
-{
-	free(p);
-}
 #pragma endregion
 
 void error()
