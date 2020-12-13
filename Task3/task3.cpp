@@ -40,6 +40,7 @@ bool Point2D::operator==(const Point2D& p)
 }
 #pragma endregion
 
+#pragma region Polyline
 void Polyline::add(float newx, float newy)
 {
 	if (index >= size)
@@ -57,9 +58,16 @@ void Polyline::add(float newx, float newy)
 
 void Polyline::remove()
 {
-	index--;
-	delete &parr[index];
-	//parr[index] = nullptr;
+	if (index == 0)
+	{
+		cout << "The polyline is empty" << endl;
+	}
+	else
+	{
+		index--;
+		Point2D* tempp = &parr[index];
+		tempp = nullptr;
+	}
 }
 
 bool Polyline::check(float x, float y)
@@ -99,6 +107,12 @@ void Polyline::print()
 		cout << parr[i].toString() << endl;
 	}
 }
+
+void Polyline::operator delete(void* p)
+{
+	free(p);
+}
+#pragma endregion
 
 void error()
 {
@@ -157,6 +171,18 @@ int main()
 	cout << "Length of polyline: ";
 	cout << line.length() << "\n" << endl;
 
+	line.remove();
+	cout << "Last point removed\n" << endl;
+
+	cout << "All points:" << endl;
+	line.print();
+	cout << endl;
+
+	cout << "Number of points: " << line.pointnum() << "\n" << endl;
+
+	cout << "Length of polyline: ";
+	cout << line.length() << "\n" << endl;
+
 	float checkx, checky;
 	cout << "Check if point exists:" << endl;
 	cout << "Point x: "; cin >> checkx;
@@ -173,6 +199,8 @@ int main()
 	}
 
 	cout << "\n" << "Point exists: " << boolalpha << line.check(checkx, checky) << endl;
+
+	line.remove();
 
 	return 0;
 }

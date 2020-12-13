@@ -48,4 +48,5 @@ public:
 	int pointnum();
 	float length();
 	void print();
+	void operator delete(void* p);
 };
