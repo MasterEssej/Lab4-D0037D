@@ -17,11 +17,19 @@ void Card::print()
 
 void CardDeck::print()
 {
-	for (int i = 0; i < 55; i++)
+	int spacing = 1;
+	cout << "Deck includes:" << endl;
+	cout << "-------------------" << endl;
+	for (int i = 0; i < 55; i++, spacing++)
 	{
 		carr[i]->print();
+		if (spacing == 4)
+		{
+			cout << endl;
+			spacing = 0;
+		}
 	}
-
+	cout << "-------------------" << endl;
 }
 
 int main()
